@@ -1,18 +1,18 @@
 $fn=50;
 
-width = 55;
+width = 60;
 height = 55;
-holder_size = 12;
+holder_size = 16;
 base_thickness = 4;
 radiator_distance = 10;
 
 module radiator(dir) {
     translate([0, 0, holder_size / 2]) rotate([0, dir * 90, 0]) translate([0, 0, radiator_distance / 2]) difference() {
-        cylinder(width / 2, d=8.1);
-        cylinder(width / 2, d=5.4);
+        cylinder(width / 2, d=12.1);
+        cylinder(width / 2, d=9.9);
     }
-    translate([dir * 12, 0, -1]) cylinder(14, d=3.2);
-    translate([dir * 12, 0, -1]) cylinder(1+2.45, d=6.4, $fn=6);
+    translate([dir * 8, 0, -1]) cylinder(1+holder_size+1, d=3.2);
+    translate([dir * 8, 0, -1]) cylinder(1+2.45, d=6.4, $fn=6);
 }
 
 difference() {
@@ -20,9 +20,10 @@ difference() {
         cube([width, holder_size, holder_size]);
         cube([width, height, base_thickness]);
     }
-    translate([0, holder_size / 2 + (height - holder_size) * 1 / 5, -1]) cylinder(1 + base_thickness + 1, d=3.2);
-    translate([0, holder_size / 2 + (height - holder_size) * 4 / 5, -1]) cylinder(1 + base_thickness + 1, d=3.2);
+    translate([0, 12 / 2 + (height - 12) * 1 / 5, -1]) cylinder(1 + base_thickness + 1, d=3.2);
+    translate([0, 12 / 2 + (height - 12) * 4 / 5, -1]) cylinder(1 + base_thickness + 1, d=3.2);
     translate([0, 0, -1]) cylinder(1 + holder_size + 1, d=3.2);
     radiator(+1);
     radiator(-1);
+    translate([0, 0, 13]) cylinder(5, d1=24, d2=32);
 }
