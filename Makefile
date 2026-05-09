@@ -1,11 +1,17 @@
 .PHONY: all
-all: dk7zb.stl drill-guide.stl
+all: output/dk7zb.stl output/drill-guide.stl
 
-REVISION = $(shell git describe --always)
+GITHUB_SHA ?= $(shell git rev-parse HEAD)
+REVISION = $(shell echo $(GITHUB_SHA) | cut -c1-7)
 
-%.stl: %.scad
-	openscad $< -Drevision=\"$(REVISION)\" -o $@
+%.json: %.json.in
+	REVISION=$(REVISION) envsubst < $^ > $@
+
+output/%.stl: %.scad customizer.json
+	mkdir -p $(@D)
+	openscad $< -p customizer.json -P ci -o $@
 
 .PHONY: clean
 clean:
-	rm -rf *.stl
+	rm -rf output/
+	rm -f customizer.json

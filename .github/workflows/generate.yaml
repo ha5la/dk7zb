@@ -15,18 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Prepare customizer.json
-        run: |
-          REVISION=$(echo $GITHUB_SHA | cut -c1-7)
-          envsubst < customizer.json.in > customizer.json
-
       - name: Generate STL files
-        uses: pkoehlers/openscad-build-action@v1
-        with:
-          input-file: 'dk7zb.scad'
-          output-file: 'output/dk7zb.stl'
-          customizer-parameter-file: 'customizer.json'
-          customizer-parameter-set: 'ci'
+        run: make
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
