@@ -1,6 +1,7 @@
 {
     "parameterSets": {
         "ci": {
+            "element_diameter": "12",
             "revision": "${REVISION}"
         }
     },

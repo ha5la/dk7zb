@@ -1,5 +1,6 @@
-// revision (git commit hash)
-revision = "abcdefg";
+element_diameter = 12; // [8:8 mm, 10:10 mm, 12:12 mm]
+/* [Hidden] */
+revision = "source";
 
 module __Customizer_Limit__ () {}  // Hide following assignments from Customizer.
 
@@ -7,16 +8,16 @@ $fn=50;
 
 width = 60;
 height = 55;
-holder_size = 16;
+holder_size = 2 + element_diameter + 2;
 base_thickness = 4;
 radiator_distance = 10;
 
 module radiator(dir) {
     translate([0, 0, holder_size / 2]) rotate([0, dir * 90, 0]) translate([0, 0, radiator_distance / 2]) difference() {
-        cylinder(width / 2, d=12.1);
-        cylinder(width / 2, d=9.4);
+        cylinder(width / 2, d=element_diameter+0.1);
+        cylinder(width / 2, d=element_diameter-2.5);
     }
-    translate([dir * 8, 0, -1]) cylinder(1+holder_size+1, d=3.2);
+    translate([dir * 8, 0, -1]) cylinder(1+holder_size+1, d=3.6);
     translate([dir * 8, 0, -1]) cylinder(1+2.45, d=6.5, $fn=6);
 }
 
@@ -30,9 +31,9 @@ difference() {
     translate([0, 0, -1]) cylinder(1 + holder_size + 1, d=3.2);
     radiator(+1);
     radiator(-1);
-    translate([0, 0, 13]) cylinder(5, d1=24, d2=32);
+    translate([0, 0, element_diameter+1]) cylinder(5, d1=24, d2=32);
     translate([0, 25, 3.5]) rotate([0, 0, 180]) linear_extrude(height=1) {
         text("HA5LA", halign="center", valign="center", font="Liberation Mono");
-        translate([0, -9, 0]) text(revision, halign="center", valign="center", font="Liberation Mono", size=2);
+        translate([0, -9, 0]) text(str("rev:", revision, " d:", element_diameter, "mm"), halign="center", valign="center", font="Liberation Mono", size=2);
     }
 }
