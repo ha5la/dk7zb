@@ -15,6 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Install openscad
+        run: |
+          sudo apt-get install -y --no-install-recommends openscad
+
       - name: Generate STL files
         run: make
 
