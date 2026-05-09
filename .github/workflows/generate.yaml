@@ -20,7 +20,10 @@ jobs:
           sudo apt-get update && sudo apt-get install -y --no-install-recommends openscad
 
       - name: Generate STL files
-        run: make
+        run: |
+          make D=8
+          make D=10
+          make D=12
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
