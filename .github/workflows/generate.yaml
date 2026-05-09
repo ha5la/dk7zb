@@ -1,0 +1,36 @@
+name: Update STL files
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Prepare customizer.json
+        run: |
+          REVISION=$(echo $GITHUB_SHA | cut -c1-7)
+          envsubst < customizer.json.in > customizer.json
+
+      - name: Generate STL files
+        uses: pkoehlers/openscad-build-action@v1
+        with:
+          input-file: 'dk7zb.scad'
+          output-file: 'output/dk7zb.stl'
+          customizer-parameter-file: 'customizer.json'
+          customizer-parameter-set: 'ci'
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: output
+          publish_branch: gh-pages

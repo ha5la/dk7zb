@@ -1,0 +1,8 @@
+{
+    "parameterSets": {
+        "ci": {
+            "revision": "${REVISION}"
+        }
+    },
+    "fileFormatVersion": "1"
+}

@@ -1,3 +1,8 @@
+// revision (git commit hash)
+revision = "abcdefg";
+
+module __Customizer_Limit__ () {}  // Hide following assignments from Customizer.
+
 $fn=50;
 
 width = 60;
@@ -5,7 +10,6 @@ height = 55;
 holder_size = 16;
 base_thickness = 4;
 radiator_distance = 10;
-revision = "abcdefg";
 
 module radiator(dir) {
     translate([0, 0, holder_size / 2]) rotate([0, dir * 90, 0]) translate([0, 0, radiator_distance / 2]) difference() {
