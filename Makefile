@@ -5,7 +5,9 @@ GITHUB_SHA ?= $(shell git rev-parse HEAD)
 REVISION = $(shell echo $(GITHUB_SHA) | cut -c1-7)
 D ?= 12
 
-all: output/dk7zb-$D.stl output/drill-guide-$D.stl
+all: output/dk7zb-$D.stl
+all: output/drill-guide-$D.stl
+all: output/holder-$D.stl
 
 %.json: %.json.in
 	REVISION=$(REVISION) ELEMENT_DIAMETER=$D envsubst < $^ > $@
