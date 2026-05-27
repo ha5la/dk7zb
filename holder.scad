@@ -16,6 +16,7 @@ difference() {
     translate([-2, 0, 0]) cube([boom_size+0.2, 1000, boom_size+0.2], center=true);
     translate([12, h/2-1, 0]) cylinder(100, d=3.3, center=true);
     translate([12, h/2-1, -16]) cylinder(1+2.45, d=6.6, $fn=6);
+    translate([-2, 11.5, 0]) cylinder(100, d=1, center=true);
     translate([0, -25, -.5]) cube([50, 50, 1]);
     translate([-25, 0, element_diameter/2+boom_element_center_distance+5.5]) cube([50, 50, 1]);
     translate([0, -1.5, -15+.5]) rotate([180, 0, 0]) linear_extrude(height=1) {
