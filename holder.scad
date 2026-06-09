@@ -14,7 +14,7 @@ difference() {
     translate([-13, 2-h/2, -13]) cube([29, h, boom_size+boom_element_center_distance+element_diameter+1]);
     translate([-1-14, 0, element_diameter/2+boom_element_center_distance+6]) rotate([0, 90, 0]) cylinder(1+30+1, d=element_diameter+0.3);
     cube([boom_size+0.1, 1000, boom_size+0.1], center=true);
-    translate([12.5, h/2-1.5, 0]) cylinder(100, d=3.3, center=true);
+    translate([12.5, h/2-1.5, 0]) cylinder(100, d=3.5, center=true);
     translate([12.5, h/2-1.5, -14]) cylinder(1+2.45, d=6.6, $fn=6);
     translate([0, 11.5, element_diameter/2+boom_element_center_distance+6]) rotate([90, 0, 0]) cylinder(100, d=2, center=true);
     rotate([0, 90, 0]) cylinder(100, d=2, center=true);
